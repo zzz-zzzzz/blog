@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>归档</title>
+</head>
+<body>
+<!--导航-->
+<nav th:replace="_fragments::menu(4)"></nav>
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <div class="ui segment attached top">
+            <div class="ui middle aligned two column  grid">
+                <div class="column">
+                    <h3 class="ui header teal">归档</h3>
+                </div>
+                <div class="column right aligned">
+                    共<h2 class="ui header orange m-inline-block me-text-thin"> 114</h2>篇
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 class="ui center aligned header">2019</h2>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+
+    <h2 class="ui center aligned header">2020</h2>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+    <div class="ui fluid vertical attached menu">
+        <a href="#" target="_blank" class="item">
+            <span>
+                <i class="teal mini circle icon"></i> 关于可以练习的清单
+                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
+            </span>
+            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
+        </a>
+    </div>
+
+</div>
+<br>
+<br>
+<!--底部-->
+<footer th:replace="_fragments::foooter"></footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>关于我</title>
+</head>
+<body>
+<!--导航-->
+<nav th:replace="_fragments::menu(5)"></nav>
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="five wide column">
+                <img src="../static/images/1.jpg" alt="" class="ui rounded image" width="320" th:src="@{/images/1.jpg}">
+            </div>
+            <div class=" eleven wide column">
+                <div class="ui top attached segment teal">
+                    <div class="ui header">关于我</div>
+                </div>
+                <div class="ui attached segment">
+                    <p class="me-text-thin me-text-spaced">张正正，一个在校大学生，暂将学习无限循环，希望结识可以共同成长的小伙伴，
+                        热爱编程，喜欢折腾，正在探索高效学习和编程技术的方法...</p>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui teal basic left label">编程</div>
+                    <div class="ui teal basic left label">游戏</div>
+                    <div class="ui teal basic left label">篮球</div>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui teal basic left label">Java</div>
+                    <div class="ui teal basic left label">JS</div>
+                </div>
+                <div class="bottom ui attached segment">
+                    <a href="https://gitee.com/zhang_zhengzheng" target="_blank" class="ui circular button icon"><i class="github icon"></i></a>
+                    <a href="#" id="weChat" class="ui circular button icon "><i class="wechat icon"></i></a>
+                    <a href="#" class="ui circular button icon" data-tooltip="2301621648" data-position="bottom center"><i
+                            class="qq icon"></i></a>
+                </div>
+                <div id="weChatZone" class="ui flowing popup transition hidden">
+                    <img src="../static/images/zzz.jpg" alt="" class="ui rounded image" width="100px" th:src="@{/images/zzz.jpg}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<!--底部-->
+<footer th:replace="_fragments::foooter"></footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+
+    $(".qq").popup();
+    $("#weChat").popup({
+        popup: $("#weChatZone"),
+        position: "bottom center"
+    });
+</script>
+</body>
+</html>
