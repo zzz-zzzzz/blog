@@ -17,3 +17,6 @@ logging:
     root: info
     com.tsu.zzz: debug
   file: log/blog-dev.log
+
+pagehelper:
+  auto-dialect:

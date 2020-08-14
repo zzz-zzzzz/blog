@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments_admin :: head(~{::title})">
-    <title>博客</title>
+    <title>分类管理</title>
 </head>
 <body>
 <!--导航-->
-<nav th:replace="_fragments_admin::menu(2)"></nav>
+<nav th:replace="_fragments_admin::menu(3)"></nav>
 <!--二级导航-->
 <div class="ui attached menu pointing">
     <div class="ui container">
@@ -18,55 +18,21 @@
 <!--中间内容-->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-        <form action="#" method="post" class="ui segment teal form">
-            <div class=" inline fields">
-                <div class="field">
-                    <input type="text" name="title" id="" placeholder="标题">
-                </div>
-                <div class="field">
-                    <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">分类</div>
-                        <div class="menu">
-                            <div class="item" data-value="1">错误日志</div>
-                            <div class="item" data-value="2">开发者手册</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="recommend" id="recommend">
-                        <label for="recommend">推荐</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <button class="ui teal basic button "><i class="icon search"></i>搜索</button>
-                </div>
-            </div>
-        </form>
         <table class="ui table">
             <thead>
             <tr>
                 <th></th>
-                <th>标题</th>
-                <th>类型</th>
-                <th>推荐</th>
-                <th>更新时间</th>
+                <th>名称</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>可以练习清单
-                </th>
-                <td>认知升级</td>
-                <td>是</td>
-                <td>2020-8-12</td>
+            <tr th:each="type,iterStat : ${pageInfo.list}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.name}">可以练习清单
                 <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red  basic button">删除</a>
+                    <a href="#"  th:href="@{'/admin/type/get/'+${type.id}}" class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{'/admin/type/delete/'+${type.id}}"class="ui mini red  basic button">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -84,8 +50,8 @@
                         <!--                            <a href="" class="item icon">-->
                         <!--                                <i class="right chevron icon"></i>-->
                         <!--                            </a>-->
-                        <a href="#" class="item">上一页</a>
-                        <a href="#" class="item">下一页</a>
+                        <a href="#" th:href="@{'/admin/type/page/'+${pageInfo.prePage}}" th:unless="${pageInfo.isFirstPage}" class="item">上一页</a>
+                        <a href="#" th:href="@{'/admin/type/page/'+${pageInfo.nextPage}}"  th:unless="${pageInfo.isLastPage}" class="item">下一页</a>
                     </div>
                     <a href="#" class="ui right floated  teal basic button">新增</a>
                 </th>
@@ -94,6 +60,9 @@
         </table>
     </div>
 </div>
+<br>
+<br>
+<br>
 <br>
 <br>
 <!--底部-->
