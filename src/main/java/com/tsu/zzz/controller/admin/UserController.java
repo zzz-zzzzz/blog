@@ -1,4 +1,4 @@
-package com.tsu.zzz.controller;
+package com.tsu.zzz.controller.admin;
 
 import com.tsu.zzz.pojo.User;
 import com.tsu.zzz.service.UserService;

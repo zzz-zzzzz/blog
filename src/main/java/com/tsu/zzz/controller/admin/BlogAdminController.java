@@ -1,11 +1,12 @@
-package com.tsu.zzz.controller;
+package com.tsu.zzz.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BlogController {
+@RequestMapping("admin")
+public class BlogAdminController {
 
     @GetMapping("/admin/blog")
     public String blog() {

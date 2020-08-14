@@ -19,10 +19,9 @@ public class MyWebMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/types").setViewName("types");
         registry.addViewController("/archives").setViewName("archives");
         registry.addViewController("/admin").setViewName("admin/login");
-        registry.addViewController("/types").setViewName("admin/types");
         registry.addViewController("/admin/index").setViewName("admin/index");
         registry.addViewController("/admin/type-input").setViewName("admin/type-input");
-
+        registry.addViewController("/admin/tag-input").setViewName("admin/tag-input");
     }
 
     @Override

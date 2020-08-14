@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments_admin :: head(~{::title})">
-    <title>分类管理</title>
+    <title>标签管理</title>
 </head>
 <body>
 <!--导航-->
-<nav th:replace="_fragments_admin::menu(3)"></nav>
+<nav th:replace="_fragments_admin::menu(4)"></nav>
 <!--二级导航-->
 <div class="ui attached menu pointing">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" th:href="@{/admin/type-input}" class="item">发布</a>
-            <a href="#" th:href="@{/admin/type/page/1}" class="active item teal">列表</a>
+            <a href="#" th:href="@{/admin/tag-input}" class="item">发布</a>
+            <a href="#" th:href="@{/admin/tag/page/1}" class="active item teal">列表</a>
         </div>
     </div>
 </div>
@@ -27,12 +27,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="type,iterStat : ${pageInfo.list}">
+            <tr th:each="tag,iterStat : ${pageInfo.list}">
                 <td th:text="${iterStat.count}">1</td>
-                <td th:text="${type.name}">可以练习清单
+                <td th:text="${tag.name}">可以练习清单
                 <td>
-                    <a href="#"  th:href="@{'/admin/type/get/'+${type.id}}" class="ui mini teal basic button">编辑</a>
-                    <a href="#" th:href="@{'/admin/type/delete/'+${type.id}}"class="ui mini red  basic button delete-button">删除</a>
+                    <a href="#"  th:href="@{'/admin/tag/get/'+${tag.id}}" class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{'/admin/tag/delete/'+${tag.id}}"class="ui mini red  basic button delete-button">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -50,10 +50,10 @@
                         <!--                            <a href="" class="item icon">-->
                         <!--                                <i class="right chevron icon"></i>-->
                         <!--                            </a>-->
-                        <a href="#" th:href="@{'/admin/type/page/'+${pageInfo.prePage}}" th:unless="${pageInfo.isFirstPage}" class="item">上一页</a>
-                        <a href="#" th:href="@{'/admin/type/page/'+${pageInfo.nextPage}}"  th:unless="${pageInfo.isLastPage}" class="item">下一页</a>
+                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.prePage}}" th:unless="${pageInfo.isFirstPage}" class="item">上一页</a>
+                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.nextPage}}"  th:unless="${pageInfo.isLastPage}" class="item">下一页</a>
                     </div>
-                    <a href="#" th:href="@{/admin/type-input}" class="ui right floated  teal basic button">新增</a>
+                    <a href="#" th:href="@{/admin/tag-input}" class="ui right floated  teal basic button">新增</a>
                 </th>
             </tr>
             </tfoot>
@@ -71,7 +71,7 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script>
     $(".delete-button").click(function () {
-        return confirm("是否将分类 "+$(this).parent().parent().children("td").eq(1).html()+" 删除？")
+        return confirm("是否将标签 "+$(this).parent().parent().children("td").eq(1).html()+" 删除？")
     });
     $(".menu.toggle").click(function () {
         $(".m-item").toggleClass("m-mobile-hide");

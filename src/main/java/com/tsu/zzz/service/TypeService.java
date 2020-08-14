@@ -19,4 +19,6 @@ public interface TypeService {
     Type findById(Long id);
 
     PageInfo<Type> findByPage(Integer page, Integer pageSize);
+
+    Integer findCount();
 }

@@ -17,6 +17,11 @@ public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeMapper typeMapper;
 
+    @Override
+    public Integer findCount() {
+        return typeMapper.findCount();
+    }
+
     @Transactional
     @Override
     public void save(Type type) {

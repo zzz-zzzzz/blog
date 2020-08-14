@@ -22,4 +22,7 @@ public interface TypeMapper {
 
     @Select("select * from t_type where id=#{id}")
     Type findById(Long id);
+
+    @Select("select count(*) from t_type ")
+    Integer findCount();
 }

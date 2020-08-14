@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments_admin :: head(~{::title})">
-    <title th:text="${type}!=null?'分类修改':'分类新增'">分类新增</title>
+    <title th:text="${tag}!=null?'标签修改':'标签新增'">标签新增</title>
 </head>
 <body>
 <!--导航-->
-<nav th:replace="_fragments_admin::menu(2)"></nav>
+<nav th:replace="_fragments_admin::menu(3)"></nav>
 <!--二级导航-->
 <div class="ui attached menu pointing">
     <div class="ui container">
         <div class="right menu">
-            <a href="#"  th:href="@{/admin/type-input}" class="active active item">发布</a>
-            <a href="#" th:href="@{/admin/type/page/1}" class=" item">列表</a>
+            <a href="#" th:href="@{/admin/tag-input}" class="active active item">发布</a>
+            <a href="#" th:href="@{/admin/tag/page/1}" class=" item">列表</a>
         </div>
     </div>
 </div>
@@ -21,11 +21,12 @@
 <!--中间内容-->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-        <form action="#" th:action="${type}==null ? '/admin/type/save':'/admin/type/update/'+${type.id}" method="post" class="ui form ">
+        <form action="#" th:action="${tag}==null ? '/admin/tag/save':'/admin/tag/update/'+${tag.id}" method="post"
+              class="ui form ">
             <div class="field">
                 <div class="ui left labeled input">
                     <label for="" class="ui teal basic label">名称</label>
-                    <input type="text" th:placeholder="${type!=null}? ${type.name}:'请输入分类名称'" name="name" id="" placeholder="分类名称">
+                    <input type="text" th:placeholder="${tag!=null}? ${tag.name} : '请输入标签名称'" name="name" id="" placeholder="分类名称">
                 </div>
             </div>
             <div class="ui error message mini"></div>
@@ -61,9 +62,9 @@
         fields: {
             title: {
                 identifier: "name",
-                rules:[{
-                    type:"empty",
-                    prompt:"分类名称不可以为空！"
+                rules: [{
+                    type: "empty",
+                    prompt: "标签名称不可以为空！"
                 }]
             },
         }
