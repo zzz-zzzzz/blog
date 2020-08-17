@@ -34,6 +34,11 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
+    public Type findByName(String name) {
+        return typeMapper.findByName(name);
+    }
+
+    @Override
     public PageInfo<Type> findByPage(Integer page, Integer pageSize) {
         if (page == null || page == 0) {
             page = 1;

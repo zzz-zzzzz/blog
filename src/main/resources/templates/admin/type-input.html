@@ -5,13 +5,13 @@
 </head>
 <body>
 <!--导航-->
-<nav th:replace="_fragments_admin::menu(2)"></nav>
+<nav th:replace="_fragments_admin::menu(3)"></nav>
 <!--二级导航-->
 <div class="ui attached menu pointing">
     <div class="ui container">
         <div class="right menu">
-            <a href="#"  th:href="@{/admin/type-input}" class="active active item">发布</a>
-            <a href="#" th:href="@{/admin/type/page/1}" class=" item">列表</a>
+            <a href="#"  th:href="@{'/admin/type-input/'+${page}}" class="active active item">发布</a>
+            <a href="#" th:href="@{'/admin/type/page/'+${page}}" class=" item">列表</a>
         </div>
     </div>
 </div>
@@ -21,16 +21,22 @@
 <!--中间内容-->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
+        <div class="ui  message" th:unless="${#strings.isEmpty(message)}" >
+            <i class="close icon"></i>
+            <div class="header">提示</div>
+            <p th:text="${message}" class="m-padded-tb-tiny"></p>
+        </div>
         <form action="#" th:action="${type}==null ? '/admin/type/save':'/admin/type/update/'+${type.id}" method="post" class="ui form ">
+            <input type="hidden" name="page" th:value="${page}">
             <div class="field">
                 <div class="ui left labeled input">
                     <label for="" class="ui teal basic label">名称</label>
                     <input type="text" th:placeholder="${type!=null}? ${type.name}:'请输入分类名称'" name="name" id="" placeholder="分类名称">
                 </div>
             </div>
-            <div class="ui error message mini"></div>
+            <div class="ui error message"></div>
             <div class="ui right aligned container">
-                <button type="button" class="ui button basic" onclick="window.history.go(-1)">返回</button>
+                <a type="button" class="ui button basic" th:href="@{'/admin/type/page/'+${page}}">返回</a>
                 <button class="ui teal basic button">提交</button>
             </div>
         </form>
@@ -67,6 +73,10 @@
                 }]
             },
         }
+    });
+
+    $(".message .close").on("click",function () {
+        $(this).closest('.message').transition('fade');
     })
 </script>
 </body>

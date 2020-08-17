@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsu.zzz.dao.BlogMapper">
+    <resultMap id="blogResultMap" type="com.tsu.zzz.pojo.Blog">
+        <id property="id" column="id" javaType="java.lang.Long"></id>
+        <result property="appreciation" column="appreciation" javaType="java.lang.Boolean"></result>
+        <result property="commentable" column="commentable" javaType="java.lang.Boolean"></result>
+        <result property="content" column="content" javaType="java.lang.String"></result>
+        <result property="createTime" column="create_time" javaType="java.util.Date"></result>
+        <result property="updateTime" column="update_time" javaType="java.util.Date"></result>
+        <result property="firstPicture" column="first_picture"  javaType="java.lang.String"></result>
+        <result property="flag" column="flag"  javaType="java.lang.String"></result>
+        <result property="published" column="published"  javaType="java.lang.Boolean"></result>
+        <result property="recommend" column="recommend" javaType="java.lang.Boolean"></result>
+        <result property="shareStatement" column="share_statement" javaType="java.lang.Boolean"></result>
+        <result property="title" column="title" javaType="java.lang.String"></result>
+        <result property="views" column="views" javaType="java.lang.Integer"></result>
+        <result property="typeId" column="type_id" javaType="java.lang.Long"></result>
+        <result property="userId" column="user_id" javaType="java.lang.Long"></result>
+        <result property="description" column="description" javaType="java.lang.String"></result>
+        <association property="type" column="type_id" select="com.tsu.zzz.dao.TypeMapper.findById"
+                     javaType="com.tsu.zzz.pojo.Type">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+        </association>
+        <collection property="tagList" column="id" select="com.tsu.zzz.dao.TagMapper.findByBlogId"
+                    ofType="com.tsu.zzz.pojo.Tag">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+        </collection>
+    </resultMap>
+    <select id="findAll" resultMap="blogResultMap" parameterType="com.tsu.zzz.pojo.Blog" >
+        select id,title,type_id,update_time,published,recommend from t_blog
+        <where>
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+            <if test="appreciation!=null">
+                and appreciation=#{appreciation}
+            </if>
+            <if test="commentable!=null">
+                and commentable=#{commentable}
+            </if>
+            <if test="content!=null">
+                and content=#{content}
+            </if>
+            <if test="createTime!=null">
+                and create_time=#{createTime}
+            </if>
+            <if test="firstPicture!=null">
+                and first_picture=#{firstPicture}
+            </if>
+            <if test="flag!=null">
+                and flag=#{flag}
+            </if>
+            <if test="published!=null">
+                and published=#{published}
+            </if>
+            <if test="recommend!=null">
+                and recommend=#{recommend}
+            </if>
+            <if test="shareStatement!=null">
+                and share_statement=#{shareStatement}
+            </if>
+            <if test="title!=null and title!=''">
+                and title like '%${title}%'
+            </if>
+            <if test="views!=null">
+                and views=#{views}
+            </if>
+            <if test="typeId!=null">
+                and type_id=#{typeId}
+            </if>
+            <if test="userId!=null">
+                and user_id=#{userId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            t_blog(appreciation,commentable,content,create_time,update_time,first_picture,flag,published,recommend,share_statement,title,views,type_id,user_id,description)
+        values
+                (#{appreciation},#{commentable},#{content},#{createTime},#{updateTime},#{firstPicture},#{flag},#{published},#{recommend},#{shareStatement},#{title},#{views},#{typeId},1,#{description})
+    </insert>
+    <select id="findById" resultMap="blogResultMap" parameterType="java.lang.Long">
+        select * from t_blog where id=#{id}
+    </select>
+    <update id="update" parameterType="com.tsu.zzz.pojo.Blog">
+        update
+            t_blog
+        set
+            appreciation=#{appreciation},commentable=#{commentable},content=#{content},
+            first_picture=#{firstPicture},flag=#{flag},published=#{published},recommend=#{recommend},share_statement=#{shareStatement},
+            title=#{title},type_id=#{typeId},description=#{description}
+        where
+            id=#{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from t_blog where id=#{id}
+    </delete>
+    <select id="findByTitle" resultMap="blogResultMap" parameterType="java.lang.String">
+        select id,title from t_blog where title=#{title}
+    </select>
+    <select id="findCount" resultType="java.lang.Integer">
+        select count(*) from t_blog
+    </select>
+</mapper>

@@ -21,4 +21,6 @@ public interface TypeService {
     PageInfo<Type> findByPage(Integer page, Integer pageSize);
 
     Integer findCount();
+
+    Type findByName(String name);
 }

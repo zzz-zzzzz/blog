@@ -10,15 +10,20 @@
 <div class="ui attached menu pointing">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" th:href="@{/admin/tag-input}" class="item">发布</a>
-            <a href="#" th:href="@{/admin/tag/page/1}" class="active item teal">列表</a>
+            <a href="#" th:href="@{'/admin/tag-input/'+${pageInfo.pageNum}}" class="item">发布</a>
+            <a href="#" th:href="@{'/admin/tag/page/1'+${pageInfo.pageNum}}" class="active item teal">列表</a>
         </div>
     </div>
 </div>
 <!--中间内容-->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
-        <table class="ui table">
+        <div class="ui  message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示</div>
+            <p th:text="${message}" class="m-padded-tb-tiny"></p>
+        </div>
+        <table class="ui teal table">
             <thead>
             <tr>
                 <th></th>
@@ -31,15 +36,17 @@
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${tag.name}">可以练习清单
                 <td>
-                    <a href="#"  th:href="@{'/admin/tag/get/'+${tag.id}}" class="ui mini teal basic button">编辑</a>
-                    <a href="#" th:href="@{'/admin/tag/delete/'+${tag.id}}"class="ui mini red  basic button delete-button">删除</a>
+                    <a href="#" th:href="@{'/admin/tag/get/'+${tag.id}+'?page='+${pageInfo.pageNum}}"
+                       class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{'/admin/tag/delete/'+${tag.id}}"
+                       class="ui mini red  basic button delete-button">删除</a>
                 </td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div class="ui pagination menu">
+                    <div class="ui pagination menu" th:unless="${pageInfo.pages}<=1">
                         <!--                            <a href="" class="item icon">-->
                         <!--                                <i class="left chevron icon"></i>-->
                         <!--                            </a>-->
@@ -50,10 +57,13 @@
                         <!--                            <a href="" class="item icon">-->
                         <!--                                <i class="right chevron icon"></i>-->
                         <!--                            </a>-->
-                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.prePage}}" th:unless="${pageInfo.isFirstPage}" class="item">上一页</a>
-                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.nextPage}}"  th:unless="${pageInfo.isLastPage}" class="item">下一页</a>
+                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.prePage}}"
+                           th:unless="${pageInfo.isFirstPage}" class="item">上一页</a>
+                        <a href="#" th:href="@{'/admin/tag/page/'+${pageInfo.nextPage}}"
+                           th:unless="${pageInfo.isLastPage}" class="item">下一页</a>
                     </div>
-                    <a href="#" th:href="@{/admin/tag-input}" class="ui right floated  teal basic button">新增</a>
+                    <a href="#" th:href="@{'/admin/tag-input/'+${pageInfo.pageNum}}"
+                       class="ui right floated  teal basic button">新增</a>
                 </th>
             </tr>
             </tfoot>
@@ -71,7 +81,7 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script>
     $(".delete-button").click(function () {
-        return confirm("是否将标签 "+$(this).parent().parent().children("td").eq(1).html()+" 删除？")
+        return confirm("是否将标签 " + $(this).parent().parent().children("td").eq(1).html() + " 删除？")
     });
     $(".menu.toggle").click(function () {
         $(".m-item").toggleClass("m-mobile-hide");
@@ -80,6 +90,9 @@
     $(".ui.dropdown").dropdown({
         on: "hover"
     });
+    $(".message .close").on("click", function () {
+        $(this).closest('.message').transition('fade');
+    })
 </script>
 </body>
 </html>

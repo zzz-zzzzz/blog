@@ -25,4 +25,7 @@ public interface TypeMapper {
 
     @Select("select count(*) from t_type ")
     Integer findCount();
+
+    @Select("select * from t_type where name=#{name}")
+    Type findByName(String name);
 }

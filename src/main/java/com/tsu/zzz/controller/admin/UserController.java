@@ -18,20 +18,20 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(String username,String password, HttpSession session, Model model) {
+    public String login(String username,String password, HttpSession session, RedirectAttributes attributes) {
         User loginUser = userService.findByUsernameAndPassword(username,password);
         if (loginUser != null) {
             session.setAttribute("loginUser", loginUser);
             return "admin/index";
         }
-        model.addAttribute("errorMsg", "用户名或密码错误!");
-        return "admin/login";
+        attributes.addFlashAttribute("errorMsg", "用户名或密码错误!");
+        return "redirect:/admin";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "admin/login";
+        return "redirect:/admin";
     }
 
 }

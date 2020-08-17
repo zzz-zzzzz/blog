@@ -17,11 +17,11 @@ public class Blog {
     private String firstPicture; //首图
     private String flag;
     private Integer views; //浏览次数
-    private Integer appreciation; //是否开启赞赏
-    private Integer shareStatement; //是否开始转载声明
-    private Integer commentTabled; //是否开始评论
-    private Integer publicShed; //是否发布
-    private Integer recommend;//是否推荐
+    private Boolean appreciation; //是否开启赞赏
+    private Boolean shareStatement; //是否开始转载声明
+    private Boolean commentable; //是否开始评论
+    private Boolean published; //是否发布
+    private Boolean recommend;//是否推荐
     private Date createTime; //创建时间
     private Date updateTime; //更新时间
     private Long userId;
@@ -30,4 +30,15 @@ public class Blog {
     private Long typeId;
     private Type type;
     private List<Tag> tagList;
+    private String description;
+
+    private String tagIds;
+
+    public void initTagIds(List<Tag> tagList) {
+        String tagIds = new String();
+        for (Tag tag : tagList) {
+            tagIds += "," + tag.getId();
+        }
+        this.tagIds = tagIds;
+    }
 }
