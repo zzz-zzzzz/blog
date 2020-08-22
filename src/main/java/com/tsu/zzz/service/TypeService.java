@@ -23,4 +23,8 @@ public interface TypeService {
     Integer findCount();
 
     Type findByName(String name);
+
+    List<Type> findAll(Integer size);
+
+
 }

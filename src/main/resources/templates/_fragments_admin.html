@@ -20,8 +20,8 @@
             <div class="right menu m-item m-mobile-hide">
                 <div class="ui dropdown item">
                     <div class="text">
-                        <img src="../static/images/1.jpg" alt="" class="ui avatar image" width="100px" th:src="${session.loginUser.avatar}" >
-                        <span th:text="${session.loginUser.nickName}"></span>
+                        <img src="../static/images/1.jpg" alt="" class="ui avatar image" width="100px" th:src="@{${session.loginUser.avatar}}" >
+                        <span th:text="${session.loginUser.nickname}"></span>
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">

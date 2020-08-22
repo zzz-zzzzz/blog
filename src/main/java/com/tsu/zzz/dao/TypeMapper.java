@@ -12,6 +12,11 @@ public interface TypeMapper {
     void save(Type type);
 
     @Select("select * from t_type")
+    @Results(id="typeResultMap01",value={
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "name",property = "name"),
+            @Result(property = "blogList",column = "id",many = @Many(select = "com.tsu.zzz.dao.BlogMapper.findByTypeId"))
+    })
     List<Type> findAll();
 
     @Update("update t_type set name=#{name} where id=#{id}")
@@ -28,4 +33,8 @@ public interface TypeMapper {
 
     @Select("select * from t_type where name=#{name}")
     Type findByName(String name);
+
+    @ResultMap("typeResultMap01")
+    @Select("select * from t_type limit 0,#{size}")
+    List<Type> findAllBySize(Integer size);
 }

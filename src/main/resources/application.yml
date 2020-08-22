@@ -11,13 +11,20 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.tsu.zzz.pojo
+  configuration:
+    lazy-loading-enabled: true
 
 
 logging:
   level:
     root: info
-    com.tsu.zzz: debug
+    com.tsu.zzz: info
   file: log/blog-dev.log
 
-pagehelper:
-  auto-dialect:
+
+jpg:
+  default:
+    comment: "/images/default.jpg"
+
+
+

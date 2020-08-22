@@ -15,87 +15,30 @@
                     <h3 class="ui header teal">归档</h3>
                 </div>
                 <div class="column right aligned">
-                    共<h2 class="ui header orange m-inline-block me-text-thin"> 114</h2>篇
+                    共<h2 class="ui header orange m-inline-block me-text-thin" th:text="${blogCount}"> 114</h2>篇
                 </div>
             </div>
         </div>
     </div>
-    <h2 class="ui center aligned header">2019</h2>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
+    <br>
+    <br>
+    <br>
 
-    <h2 class="ui center aligned header">2020</h2>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
-    <div class="ui fluid vertical attached menu">
-        <a href="#" target="_blank" class="item">
-            <span>
-                <i class="teal mini circle icon"></i> 关于可以练习的清单
-                <div class="ui teal basic left pointing label m-padded-mini">1月1日</div>
-            </span>
-            <div class="ui teal basic left pointing label m-padded-mini">转载</div>
-        </a>
-    </div>
 
+    <div th:each="entry:${blogByYear.entrySet()}">
+        <h2 class="ui center aligned header" th:text="${entry.key}">2019</h2>
+        <div class="ui fluid vertical attached menu" th:each="blog:${entry.value}">
+            <a href="#" target="_blank" class="item" th:href="@{'/blog/'+${blog.id}}">
+            <span>
+                <i class="teal mini circle icon"></i> <span th:text="${blog.title}">关于可以练习的清单</span>
+                <div class="ui teal basic left pointing label m-padded-mini" th:text="${' '+#dates.format(blog.createTime,'M月d日')}">1月1日</div>
+            </span>
+                <div class="ui teal basic left pointing label m-padded-mini" th:text="${blog.flag}">转载</div>
+            </a>
+        </div>
+        <br>
+        <br>
+    </div>
 </div>
 <br>
 <br>

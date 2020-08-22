@@ -3,6 +3,7 @@ package com.tsu.zzz.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tsu.zzz.dao.TagMapper;
+import com.tsu.zzz.pojo.Blog;
 import com.tsu.zzz.pojo.Tag;
 import com.tsu.zzz.pojo.Type;
 import com.tsu.zzz.service.TagService;
@@ -16,6 +17,7 @@ import java.util.List;
 public class TagServiceImpl implements TagService {
     @Autowired
     private TagMapper tagMapper;
+
 
     @Override
     public Tag findByName(String name) {
@@ -31,6 +33,12 @@ public class TagServiceImpl implements TagService {
     public List<Long> findIdByBlogId(Long blogId) {
         return tagMapper.findIdByBlogId(blogId);
     }
+
+    @Override
+    public List<Tag> findAll(Integer size) {
+        return tagMapper.findAllBySize(size);
+    }
+
 
     @Override
     public PageInfo<Tag> findByPage(Integer page, Integer pageSize) {

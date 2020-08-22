@@ -12,6 +12,7 @@ public interface TagMapper {
     void save(Tag tag);
 
     @Select("select * from t_tag")
+    @ResultMap("tagResultMap01")
     List<Tag> findAll();
 
     @Update("update t_tag set name=#{name} where id=#{id}")
@@ -40,4 +41,12 @@ public interface TagMapper {
 
     @Delete("delete from t_blog_tag where blog_id=#{blogId}")
     void deleteTBlogTagByBlogId(Long blogId);
+
+    @Select("select * from t_tag limit 0,#{size}")
+    @Results(id="tagResultMap01",value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "name",property = "name"),
+            @Result(property = "blogList",column = "id",many = @Many(select = "com.tsu.zzz.dao.BlogMapper.findByTagId"))
+    })
+    List<Tag> findAllBySize(Integer size);
 }

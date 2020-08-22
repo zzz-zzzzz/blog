@@ -1,5 +1,6 @@
 package com.tsu.zzz.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString
+@AllArgsConstructor
 public class Blog {
     private Long id;
     private String title; //标题
@@ -31,7 +33,6 @@ public class Blog {
     private Type type;
     private List<Tag> tagList;
     private String description;
-
     private String tagIds;
 
     public void initTagIds(List<Tag> tagList) {

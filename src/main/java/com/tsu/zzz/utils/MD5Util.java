@@ -27,4 +27,7 @@ public class MD5Util {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(code("zz14768783028"));
+    }
 }

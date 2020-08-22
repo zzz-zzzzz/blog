@@ -122,10 +122,6 @@
                     </div>
                 </div>
             </div>
-            <div class="ui message" style="display: none">
-                <ul id="error-list" class="list">
-                </ul>
-            </div>
             <div class="ui right aligned container">
                 <a type="button" class="ui button basic" th:href="@{'/admin/blog/page/'+${page}}">返回</a>
                 <a type="button" onclick="submit(false)" class="ui secondary basic button">保存</a>
@@ -181,7 +177,51 @@
 </script>
 <script>
     function submit(object) {
-        if (checkFormTitle() && checkFormContent() && checkFormTypeId() && checkFormFirstPicture() && checkFormDescription()) {
+        // if (checkFormTitle() && checkFormContent() && checkFormTypeId() && checkFormFirstPicture() && checkFormDescription()) {
+        //     $("[name=published]").val(object);
+        //     $("#blog-input-form").submit();
+        // }
+        // $("#error-list").parent().show();
+        // return false;
+        $('.ui.form').form({
+            fields: {
+                title: {
+                    identifier: "title",
+                    rules: [{
+                        type: 'empty',
+                        prompt: '博客标题不可为空'
+                    }]
+                },
+                typeId: {
+                    identifier: 'typeId',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '博客分类不可为空'
+                        }
+                    ]
+                },
+                firstPicture: {
+                    identifier: 'firstPicture',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '博客首图不可为空'
+                        }
+                    ]
+                },
+                description: {
+                    identifier: 'description',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: '博客首图不可为空'
+                        }
+                    ]
+                },
+            }
+        });
+        if ($('.ui.form').form('validate form')) {
             $("[name=published]").val(object);
             $("#blog-input-form").submit();
         }
@@ -190,45 +230,45 @@
     }
 
     /*表单验证*/
-    function checkFormTitle() {
-        if (!$("[name=title]").val()) {
-            $("#error-list").append($("<li>博客标题不可为空</li>"));
-            return false;
-        }
-        return true;
-    }
-
-    function checkFormTypeId() {
-        if (!$("[name=typeId]").val()) {
-            $("#error-list").append($("<li>博客分类不可为空</li>"));
-            return false;
-        }
-        return true;
-    }
-
-    function checkFormContent() {
-        if (!$("[name=content]").val()) {
-            $("#error-list").append($("<li>博客内容不可为空</li>"));
-            return false;
-        }
-        return true;
-    }
-
-    function checkFormFirstPicture() {
-        if (!$("[name=firstPicture]").val()) {
-            $("#error-list").append($("<li>博客首图不可为空</li>"));
-            return false;
-        }
-        return true;
-    }
-
-    function checkFormDescription() {
-        if (!$("[name=description]").val()) {
-            $("#error-list").append($("<li>博客描述不可为空</li>"));
-            return false;
-        }
-        return true;
-    }
+    // function checkFormTitle() {
+    //     if (!$("[name=title]").val()) {
+    //         $("#error-list").append($("<li>博客标题不可为空</li>"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    //
+    // function checkFormTypeId() {
+    //     if (!$("[name=typeId]").val()) {
+    //         $("#error-list").append($("<li>博客分类不可为空</li>"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    //
+    // function checkFormContent() {
+    //     if (!$("[name=content]").val()) {
+    //         $("#error-list").append($("<li>博客内容不可为空</li>"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    //
+    // function checkFormFirstPicture() {
+    //     if (!$("[name=firstPicture]").val()) {
+    //         $("#error-list").append($("<li>博客首图不可为空</li>"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    //
+    // function checkFormDescription() {
+    //     if (!$("[name=description]").val()) {
+    //         $("#error-list").append($("<li>博客描述不可为空</li>"));
+    //         return false;
+    //     }
+    //     return true;
+    // }
 </script>
 </body>
 </html>

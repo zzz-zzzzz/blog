@@ -1,6 +1,7 @@
 package com.tsu.zzz.service;
 
 import com.github.pagehelper.PageInfo;
+import com.tsu.zzz.pojo.Blog;
 import com.tsu.zzz.pojo.Tag;
 import com.tsu.zzz.pojo.Type;
 
@@ -24,4 +25,7 @@ public interface TagService {
     List<Tag> findAll();
 
     List<Long> findIdByBlogId(Long blogId);
+
+    List<Tag> findAll(Integer size);
+
 }

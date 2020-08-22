@@ -38,6 +38,12 @@ public class TypeServiceImpl implements TypeService {
         return typeMapper.findByName(name);
     }
 
+
+    @Override
+    public List<Type> findAll(Integer size) {
+        return typeMapper.findAllBySize(size);
+    }
+
     @Override
     public PageInfo<Type> findByPage(Integer page, Integer pageSize) {
         if (page == null || page == 0) {

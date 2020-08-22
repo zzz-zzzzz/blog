@@ -1,4 +1,4 @@
-package com.tsu.zzz.controller.admin;
+package com.tsu.zzz.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tsu.zzz.pojo.Tag;

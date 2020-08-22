@@ -120,7 +120,9 @@
 .m-text-black {
     color: #333 !important;
 }
-
+.m-teal{
+    color: #00B5AD!important;
+}
 /*------------display--------------*/
 .m-inline-block {
     display: inline-block !important;

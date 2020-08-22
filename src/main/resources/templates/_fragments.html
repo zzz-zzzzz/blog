@@ -16,39 +16,47 @@
     <div class="ui container">
         <div class="ui inverted  secondary menu stackable">
             <h2 class="ui  teal header item">ZZZ</h2>
-            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==1}?'active'" th:href="@{/index}"><i class="home icon"></i> 首页</a>
-            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==2}?'active'" th:href="@{/types}"><i class="idea icon"></i> 分类</a>
-            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==3}?'active'" th:href="@{/tags}"><i class="tags icon"></i> 标签</a>
-            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==4}?'active'" th:href="@{/archives}"><i class="clone icon"></i> 归档</a>
-            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==5}?'active'" th:href="@{/about}"><i class="info icon"></i> 关于我</a>
-            <div class="right item m-mobile-hide m-item" >
-                <div class="ui icon inverted transparent input">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <i class="search icon"></i>
-                </div>
+            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==1}?'active'" th:href="@{'/?page=1'}"><i
+                    class="home icon"></i> 首页</a>
+            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==2}?'active'"
+               th:href="@{'/types/-1?page=1'}"><i
+                    class="idea icon"></i> 分类</a>
+            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==3}?'active'"
+               th:href="@{'/tags/-1?page=1'}"><i
+                    class="tags icon"></i> 标签</a>
+            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==4}?'active'" th:href="@{/archives}"><i
+                    class="clone icon"></i> 归档</a>
+            <a href="#" class="m-item m-mobile-hide item" th:classappend="${n==5}?'active'" th:href="@{/about}"><i
+                    class="info icon"></i> 关于我</a>
+            <div class="right item m-mobile-hide m-item m-padded-tb-large">
+                <form name="search" action="#" th:action="@{/search/1}" target="_blank">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" name="query" id="" placeholder="Search..."
+                               th:value="${query}==null?'':${query}">
+                        <i onclick="document.forms['search'].submit();" class="search icon"></i>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <a href="#" class="menu toggle ui black button m-top-right m-mobile-show">
-        <i  class="icon sidebar"></i>
+        <i class="icon sidebar"></i>
     </a>
 </nav>
 <footer th:fragment="foooter" class="ui inverted vertical segment m-padded-tb-massive">
-    <div class="ui  center aligned container">
+    <div class="ui  center aligned container" >
         <div class="ui grid inverted stackable divided">
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img  alt="" class="ui image round" style="width: 100px;" th:src="@{/images/zzz.jpg}">
+                        <img alt="" class="ui image round" style="width: 100px;" th:src="@{/images/zzz.jpg}">
                     </div>
                 </div>
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header  me-text-spaced me-opacity-mini">最新博客</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item ">用户故事（User Story）</a>
-                    <a href="#" class="item ">用户故事（User Story）</a>
-                    <a href="#" class="item ">用户故事（User Story）</a>
+                    <a href="#" class="item" th:each="blog:${session.latestBlogList}" th:text="${blog.title}" th:href="@{'/blog/'+${blog.id}}">用户故事（User Story）</a>
                 </div>
             </div>
             <div class="three wide column">

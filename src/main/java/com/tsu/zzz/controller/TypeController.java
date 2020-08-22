@@ -1,11 +1,10 @@
 package com.tsu.zzz.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.tsu.zzz.pojo.Blog;
-import com.tsu.zzz.pojo.Tag;
 import com.tsu.zzz.pojo.Type;
 import com.tsu.zzz.service.BlogService;
-import com.tsu.zzz.service.TagService;
 import com.tsu.zzz.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,25 +15,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-public class TagController {
+public class TypeController {
     @Autowired
-    private TagService tagService;
+    private TypeService typeService;
 
     @Autowired
     private BlogService blogService;
 
-    @GetMapping("/tags/{id}")
-    public String tags(@PathVariable Long id, Integer page, Model model) {
-        List<Tag> tagList = tagService.findAll();
+    @GetMapping("/types/{id}")
+    public String types(@PathVariable Long id, Integer page, Model model) {
+        List<Type> typeList = typeService.findAll();
         if (id == -1) {
-            id = tagList.get(0).getId();
+            id = typeList.get(0).getId();
         }
-        PageInfo<Blog> pageInfo = blogService.findByTagId(id, page, 4);
-        model.addAttribute("tagList",tagList);
+        PageInfo<Blog> pageInfo = blogService.findByTypeId(id, page, 4);
         model.addAttribute("emptyNum",4-pageInfo.getList().size());
+        model.addAttribute("typeList", typeList);
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("activeTagId", id);
-        return "tags";
+        model.addAttribute("activeTypeId", id);
+        return "types";
     }
-
 }
